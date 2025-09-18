@@ -6,18 +6,24 @@ let expression = "";
 calculator.addEventListener('click', (e) => {
     const key = e.target.innerText;
 
-    if(!key) return;
+    if (!key) return;
 
-    if(key === "C"){
+    if (key === "C") {
         expression = "";
         screen.innerText = "0";
     }
-    else if(key === "="){
-        const result = eval(expression.replace(/÷/g, "/").replace(/x/g, "*"));
-        screen.innerText = result;
-        expression = result.toString();
+    else if (key === "=") {
+        try {
+            const result = eval(expression.replace(/÷/g, "/").replace(/x/g, "*"));
+            screen.innerText = result;
+            expression = result.toString();
+        }
+        catch{
+            screen.innerText = "Error"
+            expression = ""
+        }
     }
-    else{
+    else {
         expression += key;
         screen.innerText = expression
     }
